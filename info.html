@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Места из книг</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
+    <script src="libs/leaflet/leaflet.js"></script>
+    <script src="libs/reqwest/reqwest.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <!-- Навбар начало -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">
+               Bookmarks
+            </a>
+        </div>
+    </nav>
+    <!-- Навбар конец -->
+    <div class="valign-wrapper" id="preloader" style="height:90%">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+    <div class=row id='mainContent' style="padding-top:2px;margin-bottom:2px;display:none">
+        <div id="infoBar" class="col s12 m4" style="overflow: auto;max-height:100%">
+            <ul class="collection">
+                <li class="collection-item">
+                    <p id="author" class="book_info">Автор: <span id="author_name"></span></p>
+                </li>
+                <li class="collection-item">
+                    <p id="name" class="book_info">Название: <span id="book_name"></span></p>
+                </li>
+                <li class="collection-item">
+                    <p id="desc" class="book_info">Описание: <span id="book_desc"></span></p>
+                </li>
+            </ul>
+
+            <ul class="collection" id='placeList'>
+                <li class="collection-item">
+                    <p id="places" class="book_info">Места:</p>
+                </li>
+            </ul>
+        </div>
+        <!-- Карта начало -->
+        <div id="map_for_book" class="col s12 m8"></div>
+        <!-- Карта конец -->
+
+    </div>
+    <script>
+        $('#map_for_book').css('height', $(window).height() - $('.nav-wrapper').height());
+        $('#infoBar').css('max-height', $(window).height() - $('.nav-wrapper').height());
+        $(window).on('load', function() {
+            $('#preloader').css('display', 'none');
+            $('#mainContent').css('display', 'block');
+            map.map.invalidateSize();
+        });
+    </script>
+</body>
+
+</html>

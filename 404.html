@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Места из книг</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="libs/reqwest/reqwest.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <!-- Навбар начало -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">
+               Bookmarks
+            </a>
+        </div>
+    </nav>
+    <!-- Навбар конец -->
+    <div class="row" id="main_div" style="padding-top:2px;margin-bottom:2px">
+        <div class="col s12 m12">
+            <p style="text-align:center" id="text404">
+                404
+            </p>
+        </div>
+        <div class="col s12 m12">
+            <p style="text-align:center">
+                Страница не найдена. Вы можете вернуться на <a href="index.html">главную страницу<a>.
+            </p>
+        </div>
+
+
+    </div>
+    <script>
+        $('#main_div').css('height', $(window).height() - $('.nav-wrapper').height());
+    </script>
+    <style>
+        .page-footer {
+            padding-top: 0px;
+            background-color: rgb(21, 175, 129);
+        }
+
+        #text404{
+            font-size: 40vh;
+            color:rgb(21, 175, 129);
+            margin-top:0;
+            margin-bottom:0;
+            
+        }
+    </style>
+
+</body>
+
+</html>

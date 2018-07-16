@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Места из книг</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="libs/reqwest/reqwest.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <!-- Навбар начало -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">
+               Bookmarks
+            </a>
+        </div>
+    </nav>
+    <!-- Навбар конец -->
+    <div class="row" id="main_div" style="padding-top:2px;margin-bottom:2px">
+        <div class="col s12 m12">
+            <p style="text-align:center">
+                На данном сайте Вы можете найти информацию о маршруте Ваших любимых персонажей книг и увидеть места, которые они посетили, на карте.
+            </p>
+        </div>
+
+        <div class="col s12 m12" style="overflow: auto;max-height:100%">
+            <table class="highlight centered" style="overflow: auto;max-height:100%" id="bookList">
+                <thead>
+                    <tr>
+                        <th>Автор</th>
+                        <th>Название</th>
+                        <th>Метки</th>
+                        <th>Дата добавления</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let inf;
+        reqwest({
+            url: 'data/main.json',
+            type: 'json',
+            method: 'post',
+            error: function(err) {},
+            success: function(resp) {
+                inf = resp;
+                Object.values(inf).forEach(function(element, index) {
+                    $('tbody').append('<tr onclick=findPage(' + (index + 1) + ');><td>' + element["author"] + '</td><td>' + element["name"] + '</td><td>' + element["marks"] + '</td><td>' + element["date"] + '</td></tr>')
+                });
+            }
+        })
+
+        function findPage(id) {
+            localStorage.setItem('bookId', id);
+            window.location.replace("info.html");
+        }
+
+
+        $('#main_div').css('height', $(window).height() - $('.nav-wrapper').height());
+    </script>
+    <style>
+        .page-footer {
+            padding-top: 0px;
+            background-color: rgb(21, 175, 129);
+        }
+    </style>
+
+</body>
+
+</html>
